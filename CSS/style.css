@@ -1,0 +1,60 @@
+* {
+  font-family: "PT Sans Caption", sans-serif;
+}
+/* .main {
+  background-color: rgb(204, 157, 249);
+} */
+
+.inputs {
+  h1 {
+    font-family: "Pacifico", cursive;
+    font-weight: 500;
+    font-size: 50px;
+    position: relative;
+    width: fit-content;
+    z-index: 0;
+  }
+
+  h1::before {
+    content: "";
+    width: 265px;
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    /* background-color: rgb(178, 86, 178); */
+    background-color: #AA60C8;
+    z-index: -1;
+    transition: all 0.5s;
+  }
+  
+  h1:hover::before {
+    height: 40px;
+  }
+
+  h2 {
+    font-family: "Righteous", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+  }
+
+  .btn {
+    /* background-color: rgb(178, 86, 178); */
+    background-color: #AA60C8;
+    color: white;
+  }
+}
+
+.modalContainer {
+  background-color: #0007;
+  
+
+  .box-conent {
+    transition: all 1s;
+  }
+}
+
+.lilac-color-bg {
+  background-color: #B197FC;
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./image/bookmark-favorite.png" type="image/x-icon" />
+    <!-- Bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
+    <!-- Fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>Bookmark URL</title>
+</head>
+
+<body>
+    <div class="main lilac-color-bg text-center vh-100 align-content-center">
+        <div class="container">
+            <div class="inputs">
+                <h1 class="m-auto mb-5">Bookmarker</h1>
+                <h2 class="h4 mt-5"><i class="fa-solid fa-bookmark"></i> Bookmark your favorite sites <i
+                        class="fa-solid fa-bookmark"></i>
+                </h2>
+                <div class="name form-floating mb-3 mt-5">
+                    <input oninput="validateIndex(this)" type="name" class="form-control" id="name" placeholder="name">
+                    <div class=" alert alert-danger p-2 mt-2 d-none">
+                        name should start with capital character then minimum 3 characters and numbers
+                    </div>
+                    <label for="name">Name</label>
+                </div>
+                <div class="url form-floating mb-3 mt-4">
+                    <input oninput="validateIndex(this)" type="text" class="form-control" id="url" placeholder="URL">
+                    <div class=" alert alert-danger p-2 mt-2 d-none">
+                        The URL must start with either http or https and then followed by :// and then it must contain
+                        www. and then followed by subdomain of length (2, 256) and last part contains top level domain
+                        like .com, .org. then / then path if needed
+                    </div>
+                    <label for="url">Website URL</label>
+                </div>
+                <button onclick="addLink()" class="btn btn-light lilac-color-bg mt-3" id="addBtn">Add to
+                    Bookmark</button>
+            </div>
+
+
+
+            <div class="savedurl mt-4">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Website Name</th>
+                            <th>Vist</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="websiteContainer">
+                        <!-- <tr>
+                            <td>Index</td>
+                            <td>Website Name</td>
+                            <td>
+                                <button class="btn btn-info text-white"><i class="fa-solid fa-eye"></i> Visit</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="modalContainer modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel"><i
+                                    class="fa-solid fa-circle-exclamation" style="color: #fe3434;"></i> Site Name or Url
+                                is not valid</h1>
+                            <button onclick="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="h6">Please follow the rules below :</h3>
+                            <p><i class="fa-solid fa-circle-info fa-lg" style="color: #B197FC;"></i> Site name must
+                                contain at least 3 characters</p>
+                            <p><i class="fa-solid fa-circle-info fa-lg" style="color: #B197FC;"></i> Site URL must be a
+                                valid one</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="closeModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn" style="background-color: #B197FC; color: white;">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+    </div> -->
+
+    <div
+        class="modalContainer position-absolute start-0 top-0 w-100 h-100 d-flex justify-content-center align-items-center d-none">
+        <div class="box-conent bg-white p-4 rounded-2">
+            <header class="box-header w-100 d-flex justify-content-between align-items-center mb-4">
+                <h1 class="box-title fs-5"><i class="fa-solid fa-circle-exclamation fa-lg text-danger" 
+                        ></i> Site Name or Url is not valid</h1>
+                <button onclick="closeModal()" class="btn" id="closeBtn">
+                    <i class="fa-solid fa-xmark close fs-3"></i>
+                </button>
+            </header>
+
+            <div class="box-body">
+                <h3 class="h6">Please follow the rules below :</h3>
+                <p><i class="fa-solid fa-circle-info fa-lg" style="color: #B197FC;"></i> Site name must
+                    contain at least 3 characters</p>
+                <p><i class="fa-solid fa-circle-info fa-lg" style="color: #B197FC;"></i> Site URL must be a
+                    valid one</p>
+            </div>
+
+            <div class="box-footer">
+                <button onclick="closeModal()" type="button" class="btn lilac-color-bg text-white">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <!-- java script -->
+    <script src="JS/index.js"></script>
+</body>
+
+</html>
