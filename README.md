@@ -25,4 +25,10 @@ Made with **HTML, CSS, JavaScript**, and uses **localStorage** to keep your data
 - Font Awesome
 - Google Fonts
 
+---
+## 🌐 Demo
+
+![image](https://github.com/user-attachments/assets/4a38caf4-2e68-4cf6-8f4f-bf3172b6e9de)
+
+
 
